@@ -33,7 +33,7 @@ public class MainActivity extends Activity implements ServiceConnection {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+	 
 	@Override
 	protected void onDestroy() {
 		LocalBroadcastManager.getInstance(this).unregisterReceiver(serviceMessageReveiver);
@@ -44,7 +44,6 @@ public class MainActivity extends Activity implements ServiceConnection {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		bindService(new Intent(this, ServiceTaskService.class), this,0);
 		updateServiceUIState();
 			
 			
@@ -72,6 +71,7 @@ public class MainActivity extends Activity implements ServiceConnection {
 			stopService(i);
 		}else{
 			startService(i);
+			bindService(new Intent(this, ServiceTaskService.class), this,0);
 		}
 		updateServiceUIState();
 	}
