@@ -1,12 +1,15 @@
 package de.philipphock.android.servicetest;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
 
 public abstract class GenericConsumerService extends Service{
-	private volatile boolean isAlreadyRunning;
+	private volatile boolean isAlreadyRunning=false;
 
 	
 	
@@ -36,6 +39,8 @@ public abstract class GenericConsumerService extends Service{
 	}
 	
 	public abstract Runnable newInstance(GenericConsumerService service);
+	
+
 	
 
 }

@@ -1,5 +1,6 @@
 package de.philipphock.android.servicetest;
 
+import de.philipphock.android.lib.services.ServiceUtil;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -26,26 +27,28 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		updateServiceUIState();
+			
+			
+	}
+	
+	private void updateServiceUIState(){
 		Button onStartStopServiceButton = (Button) findViewById(R.id.startstopservice);
-		if (serviceIsRunning()){
-			onStartStopServiceButton.setText("stop");
+		if (ServiceUtil.isServiceRunning(this, ServiceTaskService.class)){
+			onStartStopServiceButton.setText("stop service");
 		}else{
-			onStartStopServiceButton.setText("start");
-		}
-			
-			
+			onStartStopServiceButton.setText("start service");
+		}		
 	}
 	
-	private boolean serviceIsRunning(){
-		return false;
-	}
-	
+
 	public void onStartStopService(View v){
 		Intent i = new Intent(this,ServiceTaskService.class);
-		if (serviceIsRunning()){
+		if (ServiceUtil.isServiceRunning(this, ServiceTaskService.class)){
 			stopService(i);
 		}else{
 			startService(i);
 		}
+		updateServiceUIState();
 	}
 }
