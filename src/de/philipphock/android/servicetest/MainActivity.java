@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -85,6 +84,7 @@ public class MainActivity extends Activity implements ServiceConnection {
 	
 	//serviceConnection (note: in tutorials, the use of anonymous classes is preferred)
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder service) {
 		this.service=(ServiceTaskService) ((GenericConsumerService.MyBinder) service ).getService();

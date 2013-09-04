@@ -1,8 +1,5 @@
 package de.philipphock.android.servicetest;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningServiceInfo;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
@@ -62,6 +59,7 @@ public abstract class GenericConsumerService<E extends Runnable> extends Service
 
 	public class MyBinder extends Binder{
 		
+		@SuppressWarnings("rawtypes")
 		GenericConsumerService getService(){
 			
 			return GenericConsumerService.this; 
