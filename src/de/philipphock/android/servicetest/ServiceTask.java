@@ -18,7 +18,7 @@ public class ServiceTask implements Runnable{
 			SystemClock.sleep(1000);
 			Log.d("Service","Service tick "+i);
 		}
-		service.stopSelf();
+		service.onFinish();
 	}
 
 }
