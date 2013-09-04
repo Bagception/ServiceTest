@@ -2,7 +2,11 @@ package de.philipphock.android.servicetest;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
 
@@ -19,4 +23,29 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Button onStartStopServiceButton = (Button) findViewById(R.id.startstopservice);
+		if (serviceIsRunning()){
+			onStartStopServiceButton.setText("stop");
+		}else{
+			onStartStopServiceButton.setText("start");
+		}
+			
+			
+	}
+	
+	private boolean serviceIsRunning(){
+		return false;
+	}
+	
+	public void onStartStopService(View v){
+		Intent i = new Intent(this,ServiceTaskService.class);
+		if (serviceIsRunning()){
+			stopService(i);
+		}else{
+			startService(i);
+		}
+	}
 }

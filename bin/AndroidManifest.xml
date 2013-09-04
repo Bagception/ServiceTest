@@ -3,7 +3,7 @@
     package="de.philipphock.android.servicetest"
     android:versionCode="1"
     android:versionName="1.0" >
-
+    
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="18" />
@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="ServiceTaskService"></service>
     </application>
 
 </manifest>
