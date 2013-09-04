@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements ServiceConnection {
 
@@ -76,6 +77,11 @@ public class MainActivity extends Activity implements ServiceConnection {
 		updateServiceUIState();
 	}
 
+	public void onTickClicked(View v) {
+		if (service!=null)
+			Toast.makeText(this, service.getTask().getTick()+"", Toast.LENGTH_SHORT).show();
+
+	}
 	
 	//serviceConnection (note: in tutorials, the use of anonymous classes is preferred)
 	

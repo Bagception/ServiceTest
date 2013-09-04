@@ -18,4 +18,14 @@
         android:onClick="onStartStopService"
         android:text="service control" />
 
+    <Button
+        android:id="@+id/tick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:onClick="onTickClicked"
+        android:text="gettick" />
+
 </RelativeLayout>

@@ -10,7 +10,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 
-public abstract class GenericConsumerService extends Service{
+public abstract class GenericConsumerService<E extends Runnable> extends Service{
 	private volatile boolean isAlreadyRunning=false;
 	private final IBinder myBinder = new MyBinder();
 	
@@ -18,6 +18,11 @@ public abstract class GenericConsumerService extends Service{
 	public static final int SERVICE_STATE_FINISHED=1;
 	public static final int SERVICE_STATE_ABORTED=2;
 	
+	private E task;
+	
+	protected E getTask(){
+		return task;
+	}
 	
 	
 	public void onFinish(){
@@ -47,11 +52,12 @@ public abstract class GenericConsumerService extends Service{
 	
 	private void start(){
 		isAlreadyRunning = true;
-		Thread t = new Thread(newInstance(this));
+		this.task = newInstance(this);
+		Thread t = new Thread(this.task);
 		t.start();
 	}
 	
-	public abstract Runnable newInstance(GenericConsumerService service);
+	public abstract E newInstance(GenericConsumerService<E> service);
 	
 
 	public class MyBinder extends Binder{
